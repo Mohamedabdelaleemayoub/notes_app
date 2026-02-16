@@ -1,6 +1,6 @@
 abstract class AddNoteStates {}
 
-class AddNoteInitial extends AddNoteStates {}
+class AddNoteInitialState extends AddNoteStates {}
 
 class AddNoteLoadingState extends AddNoteStates {}
 

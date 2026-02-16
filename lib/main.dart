@@ -7,8 +7,10 @@ import 'package:notes_app/views/notes_view.dart';
 
 void main() async {
   await Hive.initFlutter();
+
   await Hive.openBox(kNoteBox);
   Hive.registerAdapter(NoteModelAdapter());
+
   runApp(const NotesApp());
 }
 
@@ -20,7 +22,6 @@ class NotesApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(brightness: Brightness.dark, fontFamily: kFontFamily),
-
       home: NotesView(),
     );
   }

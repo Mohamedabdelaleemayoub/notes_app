@@ -11,19 +11,24 @@ class AddNoteBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: EdgeInsets.only(
+        top: 16,
+        bottom: MediaQuery.of(context).viewInsets.bottom + 32,
+        left: 16,
+        right: 16,
+      ),
       child: SingleChildScrollView(
         child: BlocConsumer<AddNoteCubit, AddNoteStates>(
           listener: (context, state) {
             if (state is AddNoteFailureState) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(state.errorMessage),
-                  backgroundColor: Colors.red,
-                ),
-              );
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text(state.errorMessage)));
             }
             if (state is AddNoteSuccessState) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Note Added Successfully')),
+              );
               Navigator.pop(context);
             }
           },
